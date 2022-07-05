@@ -9,3 +9,6 @@ Solution can be used for application on network drive. Macro initializing file i
 (You must modify path to .catvba file)<br>
 // Reseni je pripraveno k pouziti na sitovem disku. Macro initializing makro je umisteno na lokalnim pocitaci a .catvba na sitovem disku.<br>
 // (Je treba upravit cestu k souboru .catvba)<br>
+<br>
+Solution is prepared for using in specific company with specific drawing formats and numbering, so this is usable as template for your own solution.<br>
+// Reseni je pripraveno pro pouziti v konkretni podniku se specifickymi formaty vykresu a cislovanim, takže je to spise predloha pro vase vlastni reseni.<br>
