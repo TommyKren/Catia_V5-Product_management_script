@@ -1,0 +1,65 @@
+'*********************************
+'*** Developed by Tomas Krenek ***
+'*********************************
+
+Sub CATMain()
+ Dim ProjectNetworkFolderPath As String
+ Dim ProjectNetworkFolder As Scripting.Folder
+ 
+ Dim ProjectNetworkFileName As String
+ Dim ProjectNetworkFile As Scripting.File
+ 
+ Dim ProjectNetworkFilePath As String
+ 
+ Dim FileSystem As Scripting.FileSystemObject
+ 
+ Dim ModuleName As String
+ Dim ProcedureName As String
+ Dim varArgs() As Variant 'Use empty array if procedure has no args
+ 'Dim varArgs(0) As Variant 'Or size the array if procedure has args
+ Dim ErrorMessage As String
+
+ 'Define where to find the VBA project and what to run inside it.
+ ProjectNetworkFolderPath = "C:\...\Your path to .catvba file"
+ ProjectNetworkFileName = "Macro_project"
+ ModuleName = "Macro_starter"
+ ProcedureName = "CATMain"
+ 
+ Set FileSystem = CreateObject("Scripting.FileSystemObject")
+
+ If FileSystem.FolderExists(ProjectNetworkFolderPath) = True Then
+    'Debug.Print "Network folder exist"
+    'MsgBox ("Network folder exist")
+ Else
+    MsgBox ("Slozka s makrem neni dostupna!")
+    Exit Sub
+ End If
+ 
+ Set ProjectNetworkFolder = FileSystem.GetFolder(ProjectNetworkFolderPath)
+ 
+ Dim i As Integer
+ For Each ProjectNetworkFile In ProjectNetworkFolder.Files
+    'Debug.Print ProjectNetworkFile.Name
+    If InStr(ProjectNetworkFile.Name, ProjectNetworkFileName) <> 0 And InStr(ProjectNetworkFile.Name, ".catvba") <> 0 Then
+        ProjectNetworkFileName = ProjectNetworkFile.Name
+        Exit For
+        'MsgBox ("Network file exist")
+    Else
+    End If
+ Next
+ 
+ ProjectNetworkFilePath = ProjectNetworkFolderPath + "\" + ProjectNetworkFileName
+ 'MsgBox ProjectNetworkFilePath
+
+ 'Launch the VBA project
+ On Error Resume Next
+ Call CATIA.SystemService.ExecuteScript(ProjectNetworkFilePath, 2, ModuleName, ProcedureName, varArgs)
+ 
+ If Err.Number <> 0 Then 'Any number other than zero is an error
+    'Add your own custom error message to the user
+    ErrorMessage = "!Chyba pri spousteni makra!"
+    MsgBox ErrorMessage, 16, "Error"
+ End If
+
+End Sub
+
