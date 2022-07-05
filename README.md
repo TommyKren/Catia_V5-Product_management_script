@@ -7,5 +7,5 @@ There are folder with every single script and folder with CatVBA file and starte
 <br>
 Solution can be used for application on network drive. Macro initializing file is located on local computer and .catvba on network drive.<br>
 (You must modify path to .catvba file)<br>
-Reseni je pripraveno k pouziti na sitovem disku. Macro initializing makro je umisteno na lokalnim pocitaci a .catvba na sitovem disku.<br>
-(Je treba upravit cestu k souboru .catvba)<br>
+// Reseni je pripraveno k pouziti na sitovem disku. Macro initializing makro je umisteno na lokalnim pocitaci a .catvba na sitovem disku.<br>
+// (Je treba upravit cestu k souboru .catvba)<br>
